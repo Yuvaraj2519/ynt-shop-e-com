@@ -18,7 +18,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-public class AppUser implements Serializable {
+public class AppUser{
 
     @Column(name = "id")
     @Id
