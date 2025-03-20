@@ -3,6 +3,7 @@ package in.ynt.shop.app.controller;
 import in.ynt.shop.app.constants.APIEndpoints;
 import in.ynt.shop.app.entity.AppUser;
 import in.ynt.shop.app.service.AppUserService;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +13,11 @@ import java.util.List;
 @RequestMapping(APIEndpoints.USER)
 public class AppUserController {
 
-    @Autowired
-    private AppUserService appUserService;
+    private final AppUserService appUserService;
+
+    public AppUserController(AppUserService appUserService) {
+        this.appUserService = appUserService;
+    }
 
     @GetMapping(APIEndpoints.All_USERS)
     public List<AppUser> getAllUsers() {
