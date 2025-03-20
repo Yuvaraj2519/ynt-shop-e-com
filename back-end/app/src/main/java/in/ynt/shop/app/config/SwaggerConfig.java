@@ -17,8 +17,11 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .info(new Info().title("ynt shop app Authentication Service"))
                 .addSecurityItem(new SecurityRequirement().addList("YntShopSecurityScheme"))
-                .components(new Components().addSecuritySchemes("YntShopSecurityScheme", new SecurityScheme()
-                        .name("YntShopSecurityScheme").type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")));
+                .components(new Components()
+                        .addSecuritySchemes("YntShopSecurityScheme", new SecurityScheme()
+                        .name("YntShopSecurityScheme")
+                                .type(SecurityScheme.Type.HTTP)
+                                .scheme("bearer").bearerFormat("JWT")));
 
     }
 }
