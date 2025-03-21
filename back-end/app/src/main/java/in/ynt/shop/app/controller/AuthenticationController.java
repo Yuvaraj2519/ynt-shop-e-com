@@ -1,5 +1,6 @@
 package in.ynt.shop.app.controller;
 
+import in.ynt.shop.app.constants.APIEndpoints;
 import in.ynt.shop.app.dto.LoginDTO;
 import in.ynt.shop.app.dto.RegisterDTO;
 import in.ynt.shop.app.entity.AppUser;
@@ -17,12 +18,12 @@ public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
-    @PostMapping("/register")
+    @PostMapping(APIEndpoints.REGISTER)
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterDTO registerDTO) {
         return ResponseEntity.ok(authenticationService.registerUser(registerDTO));
     }
 
-    @PostMapping("/login")
+    @PostMapping(APIEndpoints.LOGIN)
     public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginDTO loginDTO) {
         return ResponseEntity
                 .ok(authenticationService.authenticate(loginDTO));
