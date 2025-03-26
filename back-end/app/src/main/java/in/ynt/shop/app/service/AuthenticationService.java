@@ -6,25 +6,20 @@ import in.ynt.shop.app.entity.AppUser;
 import in.ynt.shop.app.model.AuthenticationResponse;
 import in.ynt.shop.app.repository.AppUserRepository;
 import in.ynt.shop.app.util.JwtUtil;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class AuthenticationService {
 
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
     private final AppUserRepository appUserRepository;
-
-    public AuthenticationService(PasswordEncoder passwordEncoder, JwtUtil jwtUtil, AuthenticationManager authenticationManager, AppUserRepository appUserRepository) {
-        this.passwordEncoder = passwordEncoder;
-        this.jwtUtil = jwtUtil;
-        this.authenticationManager = authenticationManager;
-        this.appUserRepository = appUserRepository;
-    }
 
     public AuthenticationResponse registerUser(RegisterDTO registerDTO) {
         AppUser appUser = AppUser.builder()

@@ -3,7 +3,6 @@ package in.ynt.shop.app.controller;
 import in.ynt.shop.app.constants.APIEndpoints;
 import in.ynt.shop.app.dto.LoginDTO;
 import in.ynt.shop.app.dto.RegisterDTO;
-import in.ynt.shop.app.entity.AppUser;
 import in.ynt.shop.app.model.AuthenticationResponse;
 import in.ynt.shop.app.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
