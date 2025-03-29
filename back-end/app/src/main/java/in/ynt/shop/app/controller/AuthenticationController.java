@@ -9,10 +9,7 @@ import in.ynt.shop.app.model.RegisterResponse;
 import in.ynt.shop.app.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
@@ -34,6 +31,11 @@ public class AuthenticationController {
         }
         return ResponseEntity.ok()
                 .body(response);
+    }
+
+    @GetMapping("/health")
+    public String health() {
+        return "OK";
     }
 
     @PostMapping(APIEndpoints.LOGIN)

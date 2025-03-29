@@ -20,7 +20,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class AppUser implements UserDetails {
+public class AppUser implements UserDetails, Serializable {
 
     @Column(name = "id")
     @Id

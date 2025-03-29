@@ -6,7 +6,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.lang.NonNullApi;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -59,6 +58,7 @@ public class JWTFilter extends OncePerRequestFilter {
 
         return  request.getServletPath().equalsIgnoreCase("/auth/login") ||
                 request.getServletPath().equalsIgnoreCase("/auth/register") ||
+                request.getServletPath().equalsIgnoreCase("/auth/health") ||
                 request.getServletPath().equalsIgnoreCase("/v3/api-docs/**") ||
                 request.getServletPath().equalsIgnoreCase("/swagger-ui/**") ||
                 request.getServletPath().equalsIgnoreCase("/swagger-ui.html");
