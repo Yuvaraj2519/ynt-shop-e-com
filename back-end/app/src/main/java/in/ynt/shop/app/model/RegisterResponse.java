@@ -2,17 +2,13 @@ package in.ynt.shop.app.model;
 
 import lombok.*;
 
-import java.util.Date;
-
 @Data
-@Getter
 @Setter
+@Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationResponse {
+public class RegisterResponse {
     private String status;
     private String message;
-    private String token;
-    private Date expires;
 }

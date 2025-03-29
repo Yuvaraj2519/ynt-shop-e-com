@@ -57,8 +57,8 @@ public class JWTFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
 
-        return  request.getServletPath().equalsIgnoreCase("/login") ||
-                request.getServletPath().equalsIgnoreCase("/register") ||
+        return  request.getServletPath().equalsIgnoreCase("/auth/login") ||
+                request.getServletPath().equalsIgnoreCase("/auth/register") ||
                 request.getServletPath().equalsIgnoreCase("/v3/api-docs/**") ||
                 request.getServletPath().equalsIgnoreCase("/swagger-ui/**") ||
                 request.getServletPath().equalsIgnoreCase("/swagger-ui.html");

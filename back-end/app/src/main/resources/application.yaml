@@ -16,3 +16,13 @@ jwt:
   token:
     secret: b4d09a477bda03b3b44e8f6f552284c6acf1142bfcdc7e0b07e4d21f1efda4e7
     expiration: 3600000
+
+logging:
+  level:
+    org:
+      springframework:
+        aop: DEBUG
+    in:
+      ynt:
+        shop:
+          app: DEBUG

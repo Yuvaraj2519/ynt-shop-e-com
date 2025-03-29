@@ -88,4 +88,7 @@ public class JwtUtil implements Serializable {
         return claimsResolver.apply(claims);
     }
 
+    public Date getExpirationDate(String token){
+        return getClaim(token, Claims::getExpiration);
+    }
 }
