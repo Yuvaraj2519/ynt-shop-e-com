@@ -1,17 +1,17 @@
 import AxiosInstance from "../utils/AxiosInstance";
 
-async function LoginService(username, password) {
+async function LoginService(email, password) {
     const axiosInstance = AxiosInstance();
     try {
         const response = axiosInstance.post('/auth/login', {
-            username: username,
+            email: email,
             password: password
         });
         const res = await response;
         if (res.data.token) {
             sessionStorage.setItem('token', res.data.token);
         }
-        return res.data;
+        return res;
     } catch (error) {
         console.error("Login failed:", error);
         throw error;
