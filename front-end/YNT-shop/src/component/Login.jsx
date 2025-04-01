@@ -6,7 +6,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import LoginService from "../routers/LoginService";
+import LoginService from "../actions/LoginService";
 import { useState } from "react";
 import { SnackbarProvider, useSnackbar } from "notistack";
 import { useNavigate } from "react-router";
@@ -22,7 +22,14 @@ function LoginApp() {
     event.preventDefault();
     const response = await LoginService(email, password);
     if (response.status === 200) {
-      enqueueSnackbar("Login successful", { variant: "success" });
+      enqueueSnackbar(
+        "Login successful",
+        { variant: "success" },
+        { autoHideDuation: 3000 }
+      );
+      setTimeout(() => {
+        navigate("/dashboard", { replace: true });
+      }, 1000);
     } else enqueueSnackbar(response.data.message, { variant: "error" });
   };
 
