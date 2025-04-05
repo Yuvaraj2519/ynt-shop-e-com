@@ -10,7 +10,7 @@ import LoginService from "../actions/LoginService";
 import { useState } from "react";
 import { SnackbarProvider, useSnackbar } from "notistack";
 import { useNavigate } from "react-router";
-import appGif from "../assets/YNT_SHOP.gif";
+import appGif from "../assets/YNTSHOP.gif";
 
 function LoginApp() {
   const [email, setEmail] = useState("");
@@ -41,19 +41,21 @@ function LoginApp() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#f5f5f5",
+        backgroundColor: "#ffffff",
       }}
     >
       <Paper
-        sx={{
-          padding: 4,
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
-        }}
-      >
-        <img src={appGif}/>
-        </Paper>
+          elevation={0}
+          height="100%"
+          sx={{
+            padding: 4,
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+          }}
+        >
+        <img src={appGif} />
+      </Paper>
       <Container maxWidth="xs">
         <Paper
           elevation={3}
