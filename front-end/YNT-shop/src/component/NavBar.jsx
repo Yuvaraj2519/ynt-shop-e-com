@@ -106,6 +106,10 @@ export default function VerticalTabs() {
           label="Log out"
           icon={<LogoutRoundedIcon />}
           align="start"
+          onClick={() => {
+            localStorage.removeItem("token");
+            window.location.href = "/login";
+          }}
           {...a11yProps(3)}
         />
       </Tabs>
