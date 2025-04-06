@@ -56,12 +56,11 @@ export default function VerticalTabs() {
         flexGrow: 1,
         bgcolor: "background.paper",
         display: "flex",
-        height: 554,
       }}
       className="bg-white"
       style={{
-        width: "100%",
-        height: "100vh",
+        width: "95vw",
+        height: "85vh",
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
@@ -70,15 +69,14 @@ export default function VerticalTabs() {
     >
       <Tabs
         orientation="vertical"
-        variant="scrollable"
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: "divider" }}
         className="bg-white"
         style={{
-          width: "10%",
-          height: "100vh",
+          width: "12vw",
+          height: "85vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
@@ -87,25 +85,33 @@ export default function VerticalTabs() {
         <Tab
           label="Dashboard"
           icon={<DashboardRounded />}
+          iconPosition="start"
           align="start"
+          sx={{ justifyContent: "start" }}
           {...a11yProps(0)}
         />
         <Tab
           label="Profile"
           icon={<AccountCircleRoundedIcon />}
+          iconPosition="start"
           align="start"
+          sx={{ justifyContent: "start" }}
           {...a11yProps(1)}
         />
         <Tab
           label="Orders"
           icon={<ShoppingCartRoundedIcon />}
+          iconPosition="start"
           align="start"
+          sx={{ justifyContent: "start" }}
           {...a11yProps(2)}
         />
         <Tab
           label="Log out"
           icon={<LogoutRoundedIcon />}
+          iconPosition="start"
           align="start"
+          sx={{ justifyContent: "start" }}
           onClick={() => {
             localStorage.removeItem("token");
             window.location.href = "/login";
@@ -114,16 +120,40 @@ export default function VerticalTabs() {
         />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Item One
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+            width: "75vw",
+          }}>
+          <Typography variant="h4">Dashboard</Typography>
+        </Box>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+      <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+            width: "75vw",
+          }}>
+          <Typography variant="h4">Orders</Typography>
+        </Box>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Item Four
+      <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+            width: "75vw",
+          }}>
+          <Typography variant="h4">Profile</Typography>
+        </Box>
       </TabPanel>
     </Box>
   );
