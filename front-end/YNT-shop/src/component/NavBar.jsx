@@ -1,41 +1,126 @@
-import { Box, Tab, Tabs } from "@mui/material";
-import { useState } from "react";
+import * as React from "react";
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
-function NavBar() {
+import { DashboardRounded } from "@mui/icons-material";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 
-    const [value, setValue] = useState(0);
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    }
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
 
   return (
-    <Box sx={{ display: 'flex', height: '85vh', bgcolor: "background.paper" }}>
-        <Box sx={{ width: 200, borderRight: 1, borderColor: 'divider' }}>
-      <Tabs
-        orientation="vertical"
-        variant="scrollable"
-        value={0}
-        onChange={() => {}}
-        aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: "divider",
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            bgcolor: "background.paper",
-            padding: 2,
-         }}
-      >
-        <Tab label="Dashboard" sx={{ flex: 1 }} />
-        <Tab label="Users" sx={{ flex: 1 }} />
-        <Tab label="Settings" sx={{ flex: 1 }} />
-        <Tab label="Profile" sx={{ flex: 1 }} />
-        <Tab label="Logout" sx={{ flex: 1 }} />
-      </Tabs>
-      </Box>
-    </Box>
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`vertical-tabpanel-${index}`}
+      aria-labelledby={`vertical-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
   );
 }
 
-export default NavBar;
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `vertical-tab-${index}`,
+    "aria-controls": `vertical-tabpanel-${index}`,
+  };
+}
+
+export default function VerticalTabs() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box
+      sx={{
+        flexGrow: 1,
+        bgcolor: "background.paper",
+        display: "flex",
+        height: 554,
+      }}
+      className="bg-white"
+      style={{
+        width: "100%",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+      }}
+      // className="bg-white"
+    >
+      <Tabs
+        orientation="vertical"
+        variant="scrollable"
+        value={value}
+        onChange={handleChange}
+        aria-label="Vertical tabs example"
+        sx={{ borderRight: 1, borderColor: "divider" }}
+        className="bg-white"
+        style={{
+          width: "10%",
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <Tab
+          label="Dashboard"
+          icon={<DashboardRounded />}
+          align="start"
+          {...a11yProps(0)}
+        />
+        <Tab
+          label="Profile"
+          icon={<AccountCircleRoundedIcon />}
+          align="start"
+          {...a11yProps(1)}
+        />
+        <Tab
+          label="Orders"
+          icon={<ShoppingCartRoundedIcon />}
+          align="start"
+          {...a11yProps(2)}
+        />
+        <Tab
+          label="Log out"
+          icon={<LogoutRoundedIcon />}
+          align="start"
+          {...a11yProps(3)}
+        />
+      </Tabs>
+      <TabPanel value={value} index={0}>
+        Item One
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        Item Two
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Item Three
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        Item Four
+      </TabPanel>
+    </Box>
+  );
+}

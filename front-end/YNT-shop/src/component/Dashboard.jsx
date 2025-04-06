@@ -11,22 +11,9 @@ function DashboardPage() {
   };
 
   return (
-    <Grid container spacing={2}>
-      <Grid size={4}>
-        <NavBar />
-      </Grid>
-      <Grid size={8}>
-        <Box
-          sx={{
-            height: "85vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#f5f5f5",
-          }}
-        ></Box>
-      </Grid>
-    </Grid>
+    <>
+    <NavBar />
+    </>
   );
 }
 
