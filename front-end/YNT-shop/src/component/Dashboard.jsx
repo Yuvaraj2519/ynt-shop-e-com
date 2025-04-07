@@ -1,7 +1,8 @@
-import { Box } from "@mui/material";
+import TopBar from "./TopBar";
 import AxiosInstance from "../utils/AxiosInstance";
 import NavBar from "./NavBar";
 import {Grid } from '@mui/material'
+import BottomBar from "./BottomBar";
 function DashboardPage() {
   const axiosInstance = AxiosInstance();
 
@@ -11,7 +12,11 @@ function DashboardPage() {
   };
 
   return (
-    <NavBar />
+    <>
+      <TopBar />
+      <NavBar />
+      <BottomBar/>
+    </>
   );
 }
 
