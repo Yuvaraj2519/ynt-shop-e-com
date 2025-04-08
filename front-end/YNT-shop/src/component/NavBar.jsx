@@ -10,6 +10,7 @@ import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
+import HelpCenterRoundedIcon from '@mui/icons-material/HelpCenterRounded';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -61,7 +62,7 @@ export default function VerticalTabs() {
       className="bg-white"
       style={{
         width: "95vw",
-        height: "79.35vh",
+        height: "79.4vh",
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
@@ -78,8 +79,8 @@ export default function VerticalTabs() {
           borderColor: "divider",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-evenly", // This ensures even spacing between tabs
-          gap: 4, // Adjust this value to increase space between the tabs
+          justifyContent: "space-evenly",
+          gap: 4,
         }}
         className="bg-white"
         style={{
@@ -95,7 +96,7 @@ export default function VerticalTabs() {
           icon={<DashboardRounded />}
           iconPosition="start"
           align="start"
-          sx={{ justifyContent: "start", marginTop: "25px" }}
+          sx={{ justifyContent: "start", marginTop: "20px" }}
           {...a11yProps(0)}
         />
         <Tab
@@ -103,15 +104,15 @@ export default function VerticalTabs() {
           icon={<ShoppingCartRoundedIcon />}
           iconPosition="start"
           align="start"
-          sx={{ justifyContent: "start", marginTop: "25px" }}
+          sx={{ justifyContent: "start", marginTop: "20px" }}
           {...a11yProps(1)}
         />
         <Tab
-          label="Order Tracker"
+          label="Orders"
           icon={<LocationOnRoundedIcon />}
           iconPosition="start"
           align="start"
-          sx={{ justifyContent: "start", marginTop: "25px" }}
+          sx={{ justifyContent: "start", marginTop: "20px" }}
           {...a11yProps(2)}
         />
         <Tab
@@ -119,20 +120,28 @@ export default function VerticalTabs() {
           icon={<AccountCircleRoundedIcon />}
           iconPosition="start"
           align="start"
-          sx={{ justifyContent: "start", marginTop: "25px" }}
+          sx={{ justifyContent: "start", marginTop: "20px" }}
           {...a11yProps(3)}
+        />
+        <Tab
+          label="Help Center"
+          icon={<HelpCenterRoundedIcon />}
+          iconPosition="start"
+          align="start"
+          sx={{ justifyContent: "start", marginTop: "20px" }}
+          {...a11yProps(4)}
         />
         <Tab
           label="Log out"
           icon={<LogoutRoundedIcon />}
           iconPosition="start"
           align="start"
-          sx={{ justifyContent: "start", marginTop: "25px" }}
+          sx={{ justifyContent: "start", marginTop: "20px" }}
           onClick={() => {
             localStorage.removeItem("token");
             window.location.href = "/login";
           }}
-          {...a11yProps(4)}
+          {...a11yProps(5)}
         />
       </Tabs>
       <TabPanel value={value} index={0}>
