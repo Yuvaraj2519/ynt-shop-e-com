@@ -11,6 +11,7 @@ import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import HelpCenterRoundedIcon from '@mui/icons-material/HelpCenterRounded';
+import Home from "./Home/Home";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -145,16 +146,7 @@ export default function VerticalTabs() {
         />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100%",
-            width: "75vw",
-          }}>
-          <Typography variant="h4">Home</Typography>
-        </Box>
+          <Home />
       </TabPanel>
       <TabPanel value={value} index={1}>
       <Box
