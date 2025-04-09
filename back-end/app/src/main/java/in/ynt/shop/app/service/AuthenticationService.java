@@ -1,8 +1,8 @@
 package in.ynt.shop.app.service;
 
 import in.ynt.shop.app.constants.Status;
-import in.ynt.shop.app.dto.LoginDTO;
-import in.ynt.shop.app.dto.RegisterDTO;
+import in.ynt.shop.app.requestDTO.LoginDTO;
+import in.ynt.shop.app.requestDTO.RegisterDTO;
 import in.ynt.shop.app.entity.AppUser;
 import in.ynt.shop.app.model.AuthenticationResponse;
 import in.ynt.shop.app.model.RegisterResponse;

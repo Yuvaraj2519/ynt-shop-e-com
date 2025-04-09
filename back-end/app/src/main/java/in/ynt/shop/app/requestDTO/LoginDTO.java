@@ -1,4 +1,4 @@
-package in.ynt.shop.app.dto;
+package in.ynt.shop.app.requestDTO;
 
 import lombok.*;
 
