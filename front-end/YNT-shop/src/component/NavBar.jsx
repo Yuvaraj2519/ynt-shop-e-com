@@ -59,6 +59,7 @@ export default function VerticalTabs() {
         flexGrow: 1,
         bgcolor: "background.paper",
         display: "flex",
+        marginTop: "12vh",
       }}
       className="bg-white"
       style={{

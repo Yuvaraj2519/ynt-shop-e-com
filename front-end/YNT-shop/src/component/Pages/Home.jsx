@@ -60,6 +60,18 @@ function Home() {
       description: "Description of product 8",
       imageUrl: "https://via.placeholder.com/150",
     },
+    {
+      id: 9,
+      name: "Product 9",
+      description: "Description of product 9",
+      imageUrl: "https://via.placeholder.com/150",
+    },
+    {
+      id: 10,
+      name: "Product 10",
+      description: "Description of product 10",
+      imageUrl: "https://via.placeholder.com/150",
+    },
   ];
 
   return (

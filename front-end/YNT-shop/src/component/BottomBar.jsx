@@ -9,6 +9,8 @@ function BottomBar() {
           flexGrow: 1,
           bgcolor: "background.paper",
           display: "flex",
+          position: "fixed",
+          bottom: 0,
         }}
         className="bg-white"
         style={{
@@ -18,7 +20,6 @@ function BottomBar() {
           flexDirection: "row",
           justifyContent: "center",
           marginLeft: "-0.5vw",
-          marginBottom: "-1.5vh",
         }}
       >
         <Paper

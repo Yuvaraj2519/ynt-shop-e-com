@@ -8,6 +8,8 @@ function TopBar() {
           flexGrow: 1,
           bgcolor: "background.paper",
           display: "flex",
+          position: "fixed",
+          top: 0,
         }}
         className="bg-white"
         style={{
@@ -16,7 +18,6 @@ function TopBar() {
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
-          marginTop: "-1.5vh",
           marginLeft: "-0.5vw",
         }}
       >
