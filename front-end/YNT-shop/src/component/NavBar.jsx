@@ -9,9 +9,9 @@ import { DashboardRounded } from "@mui/icons-material";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
-import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import HelpCenterRoundedIcon from '@mui/icons-material/HelpCenterRounded';
-import Home from "./Home/Home";
+import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
+import Home from "./Pages/Home";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,7 +62,7 @@ export default function VerticalTabs() {
       }}
       className="bg-white"
       style={{
-        width: "95vw",
+        width: "98vw",
         height: "79.4vh",
         display: "flex",
         flexDirection: "row",
@@ -110,7 +110,7 @@ export default function VerticalTabs() {
         />
         <Tab
           label="Orders"
-          icon={<LocationOnRoundedIcon />}
+          icon={<LocalMallRoundedIcon />}
           iconPosition="start"
           align="start"
           sx={{ justifyContent: "start", marginTop: "20px" }}

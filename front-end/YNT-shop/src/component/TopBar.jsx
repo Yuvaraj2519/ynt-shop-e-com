@@ -36,13 +36,13 @@ function TopBar() {
           <Typography
             variant="h5"
             component="div"
-            sx={{ flexGrow: 1 , textAlign: "right"}}
+            sx={{ flexGrow: 1 , textAlign: "left"}}
             className="text-center"
             style={{
               color: "#fff",
               fontFamily: "Poppins",
               fontWeight: "600",
-              marginRight: "4vw",
+              marginLeft: "4vw",
             }}
           >
             YNT Shoping App
