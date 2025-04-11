@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
+import laptop from "../../assets/laptop.svg";
+
 function Home() {
   const products = [
     {
