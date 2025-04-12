@@ -2,10 +2,12 @@ package in.ynt.shop.app.controller;
 
 import in.ynt.shop.app.constants.APIEndpoints;
 import in.ynt.shop.app.constants.Status;
+import in.ynt.shop.app.model.ErrorResponse;
 import in.ynt.shop.app.requestDTO.LoginDTO;
 import in.ynt.shop.app.requestDTO.RegisterDTO;
 import in.ynt.shop.app.model.AuthenticationResponse;
 import in.ynt.shop.app.model.RegisterResponse;
+import in.ynt.shop.app.responseDTO.ResponseDTO;
 import in.ynt.shop.app.service.AuthenticationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,16 +26,24 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping(APIEndpoints.REGISTER)
-    public ResponseEntity<RegisterResponse> register(@Valid @RequestBody RegisterDTO registerDTO) {
+    public ResponseEntity<?> register(@Valid @RequestBody RegisterDTO registerDTO) {
 
         RegisterResponse response = authenticationService.registerUser(registerDTO);
 
         if(!Objects.equals(response.getStatus(), Status.SUCCESS)) {
-            return ResponseEntity.badRequest()
-                    .body(response);
+            ResponseDTO<ErrorResponse> responseDTO = getErrorResponse(response.getStatus(), response.getMessage());
+            return ResponseEntity.ok()
+                    .body(responseDTO);
         }
-        return ResponseEntity.ok()
-                .body(response);
+        else {
+            ResponseDTO<RegisterResponse> responseDTO = new ResponseDTO<>();
+            responseDTO.setSource("Front end");
+            responseDTO.setStatus(response.getStatus());
+            responseDTO.setData(response);
+
+            return ResponseEntity.ok()
+                    .body(responseDTO);
+        }
     }
 
     @GetMapping("/health")
@@ -42,17 +52,38 @@ public class AuthenticationController {
     }
 
     @PostMapping(APIEndpoints.LOGIN)
-    public ResponseEntity<AuthenticationResponse> login(@Valid @RequestBody LoginDTO loginDTO) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginDTO loginDTO) {
 
         AuthenticationResponse authenticationResponse = authenticationService
                 .authenticate(loginDTO);
-
         if(!Objects.equals(authenticationResponse.getStatus(), Status.SUCCESS)) {
-            return ResponseEntity.badRequest()
-                    .body(authenticationResponse);
+            ResponseDTO<ErrorResponse> responseDTO = getErrorResponse(authenticationResponse.getStatus(),
+                    authenticationResponse.getMessage());
+            return ResponseEntity.ok()
+                    .body(responseDTO);
         }
-        return ResponseEntity
-                .ok(authenticationResponse);
+
+        else {
+            ResponseDTO<AuthenticationResponse> responseDTO = new ResponseDTO<>();
+            responseDTO.setSource("Front end");
+            responseDTO.setStatus(authenticationResponse.getStatus());
+            responseDTO.setData(authenticationResponse);
+
+            return ResponseEntity.ok()
+                    .body(responseDTO);
+        }
     }
 
+    private ResponseDTO<ErrorResponse> getErrorResponse(String status, String message) {
+            ErrorResponse errorResponse = new ErrorResponse();
+            errorResponse.setErrorCategory("Server Error");
+            errorResponse.setErrorCode(500);
+            errorResponse.setErrorMessage(message);
+
+            ResponseDTO<ErrorResponse> responseDTO = new ResponseDTO<>();
+            responseDTO.setSource("Front end");
+            responseDTO.setStatus(status);
+            responseDTO.setErrors(errorResponse);
+            return responseDTO;
+    }
 }
