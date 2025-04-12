@@ -1,5 +1,6 @@
 package in.ynt.shop.app.requestDTO;
 
+import in.ynt.shop.app.validator.ValidEmail;
 import lombok.*;
 
 @Data
@@ -10,6 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 public class LoginDTO {
 
+    @ValidEmail
     private String email;
     private String password;
 }
