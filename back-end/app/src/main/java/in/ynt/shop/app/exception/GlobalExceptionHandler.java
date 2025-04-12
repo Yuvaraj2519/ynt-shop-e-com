@@ -11,22 +11,30 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleValidationException(MethodArgumentNotValidException ex) {
+
+        List<ErrorResponse> errorResponses = new ArrayList<>();
         ErrorResponse errorResponse = new ErrorResponse();
         for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
             errorResponse.setErrorCode(200);
             errorResponse.setErrorMessage(fieldError.getDefaultMessage());
             errorResponse.setErrorCategory("Validation Error");
             errorResponse.setErrorPath(fieldError.getField());
+
+            errorResponses.add(errorResponse);
         }
-        ResponseDTO<ErrorResponse> responseDTO = new ResponseDTO<>();
+
+        ResponseDTO<List<ErrorResponse>> responseDTO = new ResponseDTO<>();
         responseDTO.setStatus(Status.FAILURE);
-        responseDTO.setData(errorResponse);
+        responseDTO.setErrors(errorResponses);
         responseDTO.setSource("front end");
         return ResponseEntity.ok(responseDTO);
     }
