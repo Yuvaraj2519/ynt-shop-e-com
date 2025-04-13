@@ -9,6 +9,7 @@ import in.ynt.shop.app.model.RegisterResponse;
 import in.ynt.shop.app.repository.AppUserRepository;
 import in.ynt.shop.app.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.Objects;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class AuthenticationService {
 
@@ -35,7 +37,9 @@ public class AuthenticationService {
                 .build();
         try {
             appUserRepository.save(appUser);
+            log.info("User {} registered successfully", registerDTO.getEmail());
         } catch (Exception e) {
+            log.error("Error in saving user - {}", e.getMessage());
             return RegisterResponse.builder()
                     .status(Status.FAILURE)
                     .message(e.getMessage())
@@ -43,7 +47,7 @@ public class AuthenticationService {
         }
         return RegisterResponse.builder()
                 .status(Status.SUCCESS)
-                .message(appUser.getEmail()+" has been registered")
+                .message(appUser.getEmail()+" has been registered successfully")
                 .build();
     }
 
@@ -53,6 +57,7 @@ public class AuthenticationService {
                     new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword())
             );
         } catch (BadCredentialsException e) {
+            log.error("Error while authenticating user - {}", e.getMessage());
             AppUser appUser = appUserRepository.findByEmail(loginDTO.getEmail()).orElse(null);
             if(Objects.isNull(appUser)){
                 return AuthenticationResponse.builder()
@@ -70,6 +75,7 @@ public class AuthenticationService {
         AppUser appUser = appUserRepository.findByEmail(loginDTO.getEmail()).orElse(null);
 
         String token = jwtUtil.generateToken(appUser);
+        log.info("User {} authenticated successfully and token generated", appUser.getEmail());
         return AuthenticationResponse.builder()
                 .status(Status.SUCCESS)
                 .message("User authenticated successfully")
