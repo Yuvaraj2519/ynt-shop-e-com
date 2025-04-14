@@ -39,7 +39,7 @@ public class AuthenticationController {
             ResponseDTO<RegisterResponse> responseDTO = new ResponseDTO<>();
             responseDTO.setSource("Front end");
             responseDTO.setStatus(response.getStatus());
-            responseDTO.setData(response);
+            responseDTO.setResponseData(response);
 
             return ResponseEntity.ok()
                     .body(responseDTO);
@@ -67,7 +67,7 @@ public class AuthenticationController {
             ResponseDTO<AuthenticationResponse> responseDTO = new ResponseDTO<>();
             responseDTO.setSource("Front end");
             responseDTO.setStatus(authenticationResponse.getStatus());
-            responseDTO.setData(authenticationResponse);
+            responseDTO.setResponseData(authenticationResponse);
 
             return ResponseEntity.ok()
                     .body(responseDTO);

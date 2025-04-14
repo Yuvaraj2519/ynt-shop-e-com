@@ -15,6 +15,6 @@ public class ResponseDTO<T> {
 
     private String source;
     private String status;
-    private T data;
+    private T ResponseData;
     private T errors;
 }

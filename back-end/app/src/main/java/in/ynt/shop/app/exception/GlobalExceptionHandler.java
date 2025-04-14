@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
         List<ErrorResponse> errorResponses = new ArrayList<>();
         for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
             ErrorResponse errorResponse = new ErrorResponse();
-            errorResponse.setErrorCode(200);
+            errorResponse.setErrorCode(400);
             errorResponse.setErrorMessage(fieldError.getDefaultMessage());
             errorResponse.setErrorCategory("Validation Error");
             errorResponse.setErrorPath(fieldError.getField());
@@ -35,6 +35,7 @@ public class GlobalExceptionHandler {
         responseDTO.setStatus(Status.FAILURE);
         responseDTO.setErrors(errorResponses);
         responseDTO.setSource("front end");
-        return ResponseEntity.ok(responseDTO);
+        return ResponseEntity.badRequest()
+                .body(responseDTO);
     }
 }

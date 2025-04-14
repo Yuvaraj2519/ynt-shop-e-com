@@ -16,6 +16,5 @@ public class RegisterDTO {
     private String lastName;
     @ValidEmail
     private String email;
-    @ValidPassword
     private String password;
 }

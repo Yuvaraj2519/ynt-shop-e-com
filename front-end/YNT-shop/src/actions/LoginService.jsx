@@ -8,8 +8,9 @@ async function LoginService(email, password) {
             password: password
         });
         const res = await response;
-        if (res.data.token) {
-            sessionStorage.setItem('token', res.data.token);
+        console.log("Login response:", res.data);
+        if (res.data.responseData.token) {
+            sessionStorage.setItem('token', res.data.responseData.token);
         }
         return res;
     } catch (error) {
