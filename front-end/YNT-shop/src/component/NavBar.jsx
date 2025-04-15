@@ -12,6 +12,7 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import HelpCenterRoundedIcon from '@mui/icons-material/HelpCenterRounded';
 import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
 import Home from "./Pages/Home";
+import { useLocation, useNavigate } from "react-router";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,11 +48,27 @@ function a11yProps(index) {
 }
 
 export default function VerticalTabs() {
-  const [value, setValue] = React.useState(0);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const tabPaths = ["/dashboard", "/cart", "/orders", "/profile", "/help-center", "/logout"];
+
+  const currentTab = tabPaths.indexOf(location.pathname);
+
+  const [value, setValue] = React.useState(currentTab === -1 ? 0 : currentTab);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    navigate(tabPaths[newValue]);
   };
+
+  React.useEffect(() => {
+    if (currentTab !== value) {
+      setValue(currentTab);
+    }
+  }, [currentTab]);
+  
 
   return (
     <Box
