@@ -1,5 +1,5 @@
 import {
-    Box,
+  Box,
   Button,
   Container,
   CssBaseline,
@@ -57,26 +57,26 @@ function RegisterApp() {
 
   return (
     <Box
-          sx={{
-            height: "85vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#ffffff",
-          }}
-        >
-    <Paper
-              elevation={0}
-              height="100%"
-              sx={{
-                padding: 4,
-                display: "flex",
-                flexDirection: "column",
-                gap: 2,
-              }}
-            >
-            <img src={appGif} />
-          </Paper>
+      sx={{
+        height: "85vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#ffffff",
+      }}
+    >
+      <Paper
+        elevation={0}
+        height="100%"
+        sx={{
+          padding: 4,
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+        }}
+      >
+        <img src={appGif} />
+      </Paper>
       <Container
         component="main"
         maxWidth="md"
@@ -96,23 +96,23 @@ function RegisterApp() {
           <Typography variant="h4" align="center" sx={{ mb: 3 }}>
             Register
           </Typography>
-          <Box sx={{ display: "flex", justifyContent: "center" , gap: 2}}>
-          <TextField
-            label="First Name"
-            variant="outlined"
-            fullWidth
-            required
-            onChange={(e) => setFirstName(e.target.value)}
-            value={firstName}
-          />
-          <TextField
-            label="Last Name"
-            variant="outlined"
-            fullWidth
-            required
-            onChange={(e) => setLastName(e.target.value)}
-            value={lastName}
-          />
+          <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
+            <TextField
+              label="First Name"
+              variant="outlined"
+              fullWidth
+              required
+              onChange={(e) => setFirstName(e.target.value)}
+              value={firstName}
+            />
+            <TextField
+              label="Last Name"
+              variant="outlined"
+              fullWidth
+              required
+              onChange={(e) => setLastName(e.target.value)}
+              value={lastName}
+            />
           </Box>
           <TextField
             label="Email"
@@ -160,7 +160,7 @@ function RegisterApp() {
           </Typography>
         </Paper>
       </Container>
-      </Box>
+    </Box>
   );
 }
 
