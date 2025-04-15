@@ -4,6 +4,7 @@ import Login from "./component/Login";
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import PrivateRoute from "./utils/PrivateRoute";
 import VerticalTabs from "./component/NavBar";
+import Register from "./component/Pages/Register";
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<DashboardPage/>} />
         <Route path="/cart" element={<DashboardPage/>} />

@@ -96,6 +96,26 @@ function LoginApp() {
             Log In
           </Button>
         </Paper>
+        <Paper
+          elevation={0}
+          sx={{
+            padding: 2,
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+            marginTop: 5,
+          }} >
+          <Typography variant="body2" align="center">
+            Don't have an account?{" "}
+            <Button
+              variant="text"
+              color="primary"
+              onClick={() => navigate("/register")}
+            >
+              Register
+            </Button>
+          </Typography>
+          </Paper>
       </Container>
     </Box>
   );
