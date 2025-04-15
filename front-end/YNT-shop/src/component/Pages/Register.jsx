@@ -79,7 +79,7 @@ function RegisterApp() {
           </Paper>
       <Container
         component="main"
-        maxWidth="xs"
+        maxWidth="md"
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
         <CssBaseline />
@@ -96,6 +96,7 @@ function RegisterApp() {
           <Typography variant="h4" align="center" sx={{ mb: 3 }}>
             Register
           </Typography>
+          <Box sx={{ display: "flex", justifyContent: "center" , gap: 2}}>
           <TextField
             label="First Name"
             variant="outlined"
@@ -112,6 +113,7 @@ function RegisterApp() {
             onChange={(e) => setLastName(e.target.value)}
             value={lastName}
           />
+          </Box>
           <TextField
             label="Email"
             variant="outlined"
