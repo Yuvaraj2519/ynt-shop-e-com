@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 
 import appGif from "../../assets/YNTSHOP.gif";
+import RegisterService from "../../actions/RegisterService";
 
 function RegisterApp() {
   const [firstName, setFirstName] = useState("");
@@ -26,32 +27,24 @@ function RegisterApp() {
   const handleRegister = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setError(true);
       enqueueSnackbar("Passwords do not match", { variant: "error" });
       return;
     }
-    try {
-      const response = await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          password,
-        }),
-      });
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
-      enqueueSnackbar(data.message, { variant: "success" });
-      navigate("/login", { replace: true });
-    } catch (error) {
-      setError(error.message);
-      enqueueSnackbar(error.message, { variant: "error" });
+    setError(false);
+    const response = await RegisterService(
+      firstName,
+      lastName,
+      email,
+      password
+    );
+    if (response.status === 200) {
+      enqueueSnackbar("Registration successful", { variant: "success" });
+      setTimeout(() => {
+        navigate("/login", { replace: true });
+      }, 1000);
+    } else {
+      enqueueSnackbar(response.data.message, { variant: "error" });
     }
   };
 
