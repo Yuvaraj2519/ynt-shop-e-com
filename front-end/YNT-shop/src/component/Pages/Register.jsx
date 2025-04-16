@@ -19,7 +19,7 @@ function RegisterApp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -144,6 +144,9 @@ function RegisterApp() {
             variant="contained"
             color="primary"
             fullWidth
+            disabled={
+              !firstName || !lastName || !email || !password || !confirmPassword
+            }
             onClick={handleRegister}
           >
             Register
