@@ -22,6 +22,7 @@ function LoginApp() {
   const handleLogin = async (event) => {
     event.preventDefault();
     const response = await LoginService(email, password);
+    console.log(response);
     if (response.status === 200) {
       enqueueSnackbar(
         "Login successful",
@@ -31,7 +32,7 @@ function LoginApp() {
       setTimeout(() => {
         navigate("/dashboard", { replace: true });
       }, 1000);
-    } else enqueueSnackbar(response.data.message, { variant: "error" });
+    } else enqueueSnackbar(response.data.errors.errorMessage, { variant: "error" });
   };
 
   return (

@@ -7,10 +7,11 @@ async function LoginService(email, password) {
             email: email,
             password: password
         });
-        if (response.data.responseData.token) {
+        if (response.status === 200 && response.data.responseData) {
+            // Store the token in sessionStorage
             sessionStorage.setItem('token', response.data.responseData.token);
         }
-        return res;
+        return response;
     } catch (error) {
         console.error("Login failed:", error);
         throw error;

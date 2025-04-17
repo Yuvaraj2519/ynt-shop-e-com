@@ -32,7 +32,7 @@ public class AuthenticationController {
 
         if(!Objects.equals(response.getStatus(), Status.SUCCESS)) {
             ResponseDTO<ErrorResponse> responseDTO = getErrorResponse(response.getStatus(), response.getMessage());
-            return ResponseEntity.ok()
+            return ResponseEntity.badRequest()
                     .body(responseDTO);
         }
         else {
@@ -59,7 +59,7 @@ public class AuthenticationController {
         if(!Objects.equals(authenticationResponse.getStatus(), Status.SUCCESS)) {
             ResponseDTO<ErrorResponse> responseDTO = getErrorResponse(authenticationResponse.getStatus(),
                     authenticationResponse.getMessage());
-            return ResponseEntity.ok()
+            return ResponseEntity.badRequest()
                     .body(responseDTO);
         }
 

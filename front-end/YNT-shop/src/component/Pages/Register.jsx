@@ -44,7 +44,13 @@ function RegisterApp() {
         navigate("/login", { replace: true });
       }, 1000);
     } else {
-      enqueueSnackbar(response.data.message, { variant: "error" });
+      enqueueSnackbar("Registration failed", { variant: "error" });
+      const errors = response.data.errors;
+      errors.map( error => {
+        if (error.errorMessage) {
+          enqueueSnackbar(error.errorMessage, { variant: "error" });
+        }
+      })
     }
   };
 
