@@ -14,5 +14,6 @@ public class LoginDTO {
 
     @ValidEmail
     private String email;
+    @ValidPassword
     private String password;
 }
