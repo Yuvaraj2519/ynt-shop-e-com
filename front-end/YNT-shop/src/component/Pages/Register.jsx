@@ -13,6 +13,7 @@ import { useNavigate } from "react-router";
 
 import appGif from "../../assets/YNTSHOP.gif";
 import RegisterService from "../../actions/RegisterService";
+import PasswordPolicyDialog from "../../utils/PasswordPolicyDialog";
 
 function RegisterApp() {
   const [firstName, setFirstName] = useState("");
@@ -139,6 +140,7 @@ function RegisterApp() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             value={confirmPassword}
           />
+          <PasswordPolicyDialog />
           <Button
             variant="contained"
             color="primary"

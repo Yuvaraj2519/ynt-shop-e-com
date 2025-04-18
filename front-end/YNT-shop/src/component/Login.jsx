@@ -11,6 +11,7 @@ import { useState } from "react";
 import { SnackbarProvider, useSnackbar } from "notistack";
 import { useNavigate } from "react-router";
 import appGif from "../assets/YNTSHOP.gif";
+import PasswordPolicyDialog from "../utils/PasswordPolicyDialog";
 
 function LoginApp() {
   const [email, setEmail] = useState("");
@@ -88,6 +89,7 @@ function LoginApp() {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
+          <PasswordPolicyDialog />
           <Button
             variant="contained"
             color="primary"
