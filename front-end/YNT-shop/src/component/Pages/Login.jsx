@@ -6,12 +6,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import LoginService from "../actions/LoginService";
+import LoginService from "../../actions/LoginService";
 import { useState } from "react";
 import { SnackbarProvider, useSnackbar } from "notistack";
 import { useNavigate } from "react-router";
-import appGif from "../assets/YNTSHOP.gif";
-import PasswordPolicyDialog from "../utils/PasswordPolicyDialog";
+import appGif from "../../assets/YNTSHOP.gif";
+import PasswordPolicyDialog from "../../utils/PasswordPolicyDialog";
 
 function LoginApp() {
   const [email, setEmail] = useState("");

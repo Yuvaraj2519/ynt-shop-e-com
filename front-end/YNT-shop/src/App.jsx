@@ -1,9 +1,8 @@
 import "./App.css";
 import DashboardPage from "./component/Dashboard";
-import Login from "./component/Login";
+import Login from "./component/Pages/Login";
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import PrivateRoute from "./utils/PrivateRoute";
-import VerticalTabs from "./component/NavBar";
 import Register from "./component/Pages/Register";
 
 function App() {
