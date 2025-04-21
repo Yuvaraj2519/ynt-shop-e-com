@@ -1,6 +1,7 @@
 package in.ynt.shop.app.service;
 
 import in.ynt.shop.app.constants.Status;
+import in.ynt.shop.app.model.Profile;
 import in.ynt.shop.app.requestDTO.LoginDTO;
 import in.ynt.shop.app.requestDTO.RegisterDTO;
 import in.ynt.shop.app.entity.AppUser;
@@ -76,10 +77,17 @@ public class AuthenticationService {
 
         String token = jwtUtil.generateToken(appUser);
         log.info("User {} authenticated successfully and token generated", appUser.getEmail());
+        Profile profile = Profile.builder()
+                .firstName(appUser.getFirstName())
+                .lastName(appUser.getLastName())
+                .email(appUser.getEmail())
+                .build();
+
         return AuthenticationResponse.builder()
                 .status(Status.SUCCESS)
                 .message("User authenticated successfully")
                 .token(token)
+                .profile(profile)
                 .expires(jwtUtil.getExpirationDate(token))
                 .build();
     }

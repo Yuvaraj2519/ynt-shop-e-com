@@ -47,7 +47,7 @@ public class AppUser implements UserDetails, Serializable {
     @Column(name = "updated")
     private Date updated;
 
-    @OneToMany(mappedBy = "app_user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
     private List<Address> addresses;
 
     @Override

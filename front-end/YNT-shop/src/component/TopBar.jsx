@@ -1,6 +1,12 @@
-import { Box, Paper, Typography } from "@mui/material";
+import { Avatar, Box, Paper, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+
 
 function TopBar() {
+
+  const profile = useSelector((state) => state.profile.user);
+  console.log("Profile: ", profile);
+
   return (
     <div className="top-bar">
       <Box
@@ -48,6 +54,15 @@ function TopBar() {
           >
             YNT Shoping App
           </Typography>
+        <Avatar
+        style={{
+          marginLeft: "auto",
+          marginRight: "3vw",
+        }}
+        >
+          {profile ? profile.firstName.charAt(0).toUpperCase() : "U"}
+          {profile ? profile.lastName.charAt(0).toUpperCase() : "U"}
+        </Avatar>
         </Paper>
       </Box>
     </div>

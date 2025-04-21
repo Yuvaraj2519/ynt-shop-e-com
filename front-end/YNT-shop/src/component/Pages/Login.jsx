@@ -12,6 +12,8 @@ import { SnackbarProvider, useSnackbar } from "notistack";
 import { useNavigate } from "react-router";
 import appGif from "../../assets/YNTSHOP.gif";
 import PasswordPolicyDialog from "../../utils/PasswordPolicyDialog";
+import { useDispatch } from "react-redux";
+import { setProfile } from "../../store/profile/ProfileSlice";
 
 function LoginApp() {
   const [email, setEmail] = useState("");
@@ -19,12 +21,15 @@ function LoginApp() {
 
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
+  
+  const dispatch = useDispatch();
 
   const handleLogin = async (event) => {
     event.preventDefault();
     const response = await LoginService(email, password);
-    console.log(response);
     if (response.status === 200) {
+      // Store the user data in redux store or context
+      dispatch(setProfile(response.data.responseData.profile));
       enqueueSnackbar(
         "Login successful",
         { variant: "success" },
@@ -33,7 +38,15 @@ function LoginApp() {
       setTimeout(() => {
         navigate("/dashboard", { replace: true });
       }, 1000);
-    } else enqueueSnackbar(response.data.errors.errorMessage, { variant: "error" });
+    } else{
+      enqueueSnackbar("Login failed", { variant: "error" });
+      const errors = response.data.errors;
+      errors.map( error => {
+        if (error.errorMessage) {
+          enqueueSnackbar(error.errorMessage, { variant: "error" });
+        }
+      })
+    }
   };
 
   return (
