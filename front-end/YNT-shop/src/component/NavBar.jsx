@@ -13,6 +13,7 @@ import HelpCenterRoundedIcon from '@mui/icons-material/HelpCenterRounded';
 import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
 import Home from "./Pages/Home";
 import { useLocation, useNavigate } from "react-router";
+import Profile from "./Pages/Profile";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -190,6 +191,9 @@ export default function VerticalTabs() {
           }}>
           <Typography variant="h4">Tracking</Typography>
         </Box>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <Profile/>
       </TabPanel>
     </Box>
   );
