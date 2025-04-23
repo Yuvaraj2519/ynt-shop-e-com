@@ -14,119 +14,128 @@ function ProfilePage() {
     email: "j@test.com",
   });
 
-
   return (
-      <Box sx={{ width: "800", padding: 2, borderRadius: 2, boxShadow: 3 }}>
-        <Typography
-          style={{
-              fontSize: "1.5rem",
-              fontWeight: "bold",
-              marginBottom: "1rem",
-              color: "#555d5b",
-            }}
-        >
-        Profile
-        </Typography>
-        <Typography
-          style={{
-            fontSize: "1rem",
-            marginBottom: "1rem",
-            color: "#555d5b",
-          }}
-          variant="body2"
-        >
-          Manage your profile information
-        </Typography>
-        <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
-      <TextField
-        label="First Name"
-        value={user.firstname}
-        onChange={(e) => setUser({ ...user, firstname: e.target.value })}
-        variant="outlined"
-        margin="normal"
-        fullWidth
-        disabled={!isEditing}
-      />
-      <TextField
-        label="Last Name"
-        value={user.lastname}
-        onChange={(e) => setUser({ ...user, lastname: e.target.value })}
-        variant="outlined"
-        margin="normal"
-        fullWidth
-        disabled={!isEditing}
-      />
-      <TextField
-        label="Email"
-        value={user.email}
-        onChange={(e) => setUser({ ...user, email: e.target.value })}
-        variant="outlined"
-        margin="normal"
-        fullWidth
-        disabled
+    <Box sx={{ width: "800", padding: 2, borderRadius: 2, boxShadow: 3 }}>
+      <Typography
+        style={{
+          fontSize: "1.5rem",
+          fontWeight: "bold",
+          marginBottom: "1rem",
+          color: "#555d5b",
+        }}
+      >
+        Your Profile
+      </Typography>
+      <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
+        <TextField
+          label="First Name"
+          value={user.firstname}
+          onChange={(e) => setUser({ ...user, firstname: e.target.value })}
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          disabled={!isEditing}
+        />
+        <TextField
+          label="Last Name"
+          value={user.lastname}
+          onChange={(e) => setUser({ ...user, lastname: e.target.value })}
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          disabled={!isEditing}
         />
       </Box>
+        <TextField
+          label="Email"
+          value={user.email}
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          disabled
+        />
+        <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
+          <TextField
+            label="Phone Number"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            disabled={!isEditing}
+          />
+          <TextField
+            label="Date of Birth"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            disabled={!isEditing}
+          />
+        </Box>
       <Paper
         variant="outlined"
         sx={{ padding: 2, marginTop: 2, borderRadius: 2 }}
       >
-        <Typography variant="subtitle1" gutterBottom style={{ alignItems: "right" }}>
+        <Typography
+          variant="subtitle1"
+          gutterBottom
+          style={{ alignItems: "right" }}
+        >
           Address
         </Typography>
-        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
-        <TextField
-          label="Street Address"
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          disabled={!isEditing}
-        />
-        <TextField
-          label="City"
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          disabled={!isEditing}
-        />
-        <TextField
-          label="State"
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          disabled={!isEditing}
-        />
-        <TextField
-          label="Zip Code"
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          disabled={!isEditing}
-        />
-        <TextField
-          label="Country"
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          disabled={!isEditing}
-        />
+        <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
+          <TextField
+            label="Street Address"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            disabled={!isEditing}
+          />
+          <TextField
+            label="City"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            disabled={!isEditing}
+          />
+          <TextField
+            label="State"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            disabled={!isEditing}
+          />
+          <TextField
+            label="Zip Code"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            disabled={!isEditing}
+          />
+          <TextField
+            label="Country"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            disabled={!isEditing}
+          />
         </Box>
-      </Paper> 
+      </Paper>
       <Button
         variant="contained"
         color="primary"
         onClick={() => setIsEditing(!isEditing)}
-        sx={{ mt: 2 }} 
+        sx={{ mt: 2 }}
       >
         {isEditing ? "Save" : "Edit"}
       </Button>
-      </Box>
+    </Box>
   );
 }
 
-export default function Profile(){
+export default function Profile() {
   return (
-      <SnackbarProvider maxSnack={3}>
-        <ProfilePage />
-      </SnackbarProvider>
-    );
+    <SnackbarProvider maxSnack={3}>
+      <ProfilePage />
+    </SnackbarProvider>
+  );
 }
