@@ -45,7 +45,6 @@ function ProfilePage() {
           fullWidth
           disabled={!isEditing}
         />
-      </Box>
         <TextField
           label="Email"
           value={user.email}
@@ -55,6 +54,7 @@ function ProfilePage() {
           fullWidth
           disabled
         />
+      </Box>
         <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
           <TextField
             label="Phone Number"
