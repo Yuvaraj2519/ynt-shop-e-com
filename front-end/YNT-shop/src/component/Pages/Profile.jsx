@@ -15,7 +15,7 @@ function ProfilePage() {
   });
 
   return (
-    <Box sx={{ width: "800", padding: 2, borderRadius: 2, boxShadow: 3 }}>
+    <Box sx={{ width: "800", padding: 2, borderRadius: 2, boxShadow: 3 , marginRight: 50}}>
       <Typography
         style={{
           fontSize: "1.5rem",
@@ -45,7 +45,8 @@ function ProfilePage() {
           fullWidth
           disabled={!isEditing}
         />
-        <TextField
+      </Box>
+      <TextField
           label="Email"
           value={user.email}
           onChange={(e) => setUser({ ...user, email: e.target.value })}
@@ -54,8 +55,6 @@ function ProfilePage() {
           fullWidth
           disabled
         />
-      </Box>
-        <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
           <TextField
             label="Phone Number"
             variant="outlined"
@@ -70,56 +69,6 @@ function ProfilePage() {
             fullWidth
             disabled={!isEditing}
           />
-        </Box>
-      <Paper
-        variant="outlined"
-        sx={{ padding: 2, marginTop: 2, borderRadius: 2 }}
-      >
-        <Typography
-          variant="subtitle1"
-          gutterBottom
-          style={{ alignItems: "right" }}
-        >
-          Address
-        </Typography>
-        <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
-          <TextField
-            label="Street Address"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            disabled={!isEditing}
-          />
-          <TextField
-            label="City"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            disabled={!isEditing}
-          />
-          <TextField
-            label="State"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            disabled={!isEditing}
-          />
-          <TextField
-            label="Zip Code"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            disabled={!isEditing}
-          />
-          <TextField
-            label="Country"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            disabled={!isEditing}
-          />
-        </Box>
-      </Paper>
       <Button
         variant="contained"
         color="primary"
