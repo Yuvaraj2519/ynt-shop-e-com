@@ -1,9 +1,10 @@
 import { Avatar, Box, Paper, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-
+import { useNavigate } from "react-router";
 
 function TopBar() {
 
+  const navigate = useNavigate();
   const profile = useSelector((state) => state.profile.user);
   console.log("Profile: ", profile);
 
@@ -43,7 +44,7 @@ function TopBar() {
           <Typography
             variant="h5"
             component="div"
-            sx={{ flexGrow: 1 , textAlign: "left"}}
+            sx={{ flexGrow: 1, textAlign: "left" }}
             className="text-center"
             style={{
               color: "#fff",
@@ -54,15 +55,22 @@ function TopBar() {
           >
             YNT Shoping App
           </Typography>
-        <Avatar
-        style={{
-          marginLeft: "auto",
-          marginRight: "3vw",
-        }}
-        >
-          {profile ? profile.firstName.charAt(0).toUpperCase() : "U"}
-          {profile ? profile.lastName.charAt(0).toUpperCase() : "U"}
-        </Avatar>
+          <Avatar
+            style={{
+              marginLeft: "auto",
+              marginRight: "3vw",
+            }}
+            onClick={() => {navigate("/profile")}}
+            sx={{
+              '&:hover': {
+                cursor: 'pointer',
+                backgroundColor: '#ff5722',
+              },
+            }}
+          >
+            {profile ? profile.firstName.charAt(0).toUpperCase() : "U"}
+            {profile ? profile.lastName.charAt(0).toUpperCase() : "U"}
+          </Avatar>
         </Paper>
       </Box>
     </div>
