@@ -1,10 +1,12 @@
 import {
   Box,
   Button,
+  ButtonGroup,
   Chip,
   Container,
   FormControl,
   FormControlLabel,
+  Grid,
   Paper,
   Radio,
   RadioGroup,
@@ -23,33 +25,45 @@ function ProfilePage() {
 
   const addresses = [
     {
-      id: 'addr1',
+      id: "addr1",
       isDefault: true,
       details: {
-        Name: 'John Doe',
-        Street: '123 Main Street',
-        City: 'Springfield',
-        State: 'IL',
-        ZIP: '62704',
-        Country: 'USA',
+        Name: "John Doe",
+        Street: "123 Main Street",
+        City: "Springfield",
+        State: "IL",
+        ZIP: "62704",
+        Country: "USA",
       },
     },
     {
-      id: 'addr2',
+      id: "addr2",
       isDefault: false,
       details: {
-        Name: 'Jane Smith',
-        Street: '456 Oak Avenue',
-        City: 'Shelbyville',
-        State: 'IL',
-        ZIP: '62565',
-        Country: 'USA',
+        Name: "Jane Smith",
+        Street: "456 Oak Avenue",
+        City: "Shelbyville",
+        State: "IL",
+        ZIP: "62565",
+        Country: "USA",
+      },
+    },
+    {
+      id: "addr3",
+      isDefault: false,
+      details: {
+        Name: "Jane Smith",
+        Street: "456 Oak Avenue",
+        City: "Shelbyville",
+        State: "IL",
+        ZIP: "62565",
+        Country: "USA",
       },
     },
   ];
-  
+
   const [selectedId, setSelectedId] = useState(
-    addresses.find((a) => a.isDefault)?.id || ''
+    addresses.find((a) => a.isDefault)?.id || ""
   );
 
   const [user, setUser] = useState({
@@ -136,74 +150,100 @@ function ProfilePage() {
           disabled={!isEditing}
         />
         <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => setIsEditing(!isEditing)}
-          sx={{ mt: 2 }}
-        >
-          {isEditing ? "Save" : "Edit"}
-        </Button>
-        {isEditing && <Button
-          variant="outlined"
-          color="primary"
-          hidden={!isEditing}
-          sx={{ mt: 2, ml: 2 }}
-        >
-        Cancel
-        </Button>}
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setIsEditing(!isEditing)}
+            sx={{ mt: 2 }}
+          >
+            {isEditing ? "Save" : "Edit"}
+          </Button>
+          {isEditing && (
+            <Button
+              variant="outlined"
+              color="primary"
+              hidden={!isEditing}
+              sx={{ mt: 2, ml: 2 }}
+            >
+              Cancel
+            </Button>
+          )}
         </Box>
       </Box>
-      <FormControl component="fieldset">
-      <RadioGroup
-        name="address-selection"
-        value={selectedId}
-        onChange={(e) => setSelectedId(e.target.value)}
+      <Box
+        sx={{
+          border: "1px solid",
+          borderColor: "grey.400",
+          borderRadius: 2,
+          padding: 2,
+          maxWidth: 600,
+          overflowY: "auto",
+          height: "65vh",
+        }}
       >
-        <Stack spacing={2}>
-          {addresses.map((address) => (
-            <Box
-              key={address.id}
-              sx={{
-                border: '1px solid',
-                borderColor: selectedId === address.id ? 'primary.main' : 'grey.400',
-                borderRadius: 2,
-                padding: 2,
-                maxWidth: 450,
-                backgroundColor: 'transparent',
-              }}
-            >
-              <FormControlLabel
-                value={address.id}
-                control={<Radio />}
-                label={
-                  <Box>
-                    {address.isDefault && (
-                      <Chip
-                        label="Default"
-                        color="success"
-                        size="small"
-                        sx={{ mt: 1 }}
-                      />
-                    )}
-                    <Stack spacing={0.5}>
-                      {Object.entries(address.details).map(([key, value]) => (
-                        <Box key={key} sx={{ display: 'flex' }}>
-                          <Typography sx={{ width: 80, fontWeight: 'bold' }}>
-                            {key}:
-                          </Typography>
-                          <Typography>{value}</Typography>
+        <Typography variant="h6" sx={{ fontWeight: "bold", marginBottom: 2 }}>
+          Your address details
+        </Typography>
+        <FormControl component="fieldset">
+          <RadioGroup
+            name="address-selection"
+            value={selectedId}
+            onChange={(e) => setSelectedId(e.target.value)}
+          >
+            <Grid container spacing={2}>
+              {addresses.map((address) => (
+                <Grid item xs={12} sm={6} key={address.id}>
+                  <Box
+                    key={address.id}
+                    sx={{
+                      border: "1px solid",
+                      borderColor:
+                        selectedId === address.id ? "primary.main" : "grey.400",
+                      borderRadius: 2,
+                      padding: 2,
+                      maxWidth: 450,
+                      height: 200,
+                      justifyContent: "space-evenly",
+                      display: "flex",
+                      backgroundColor: "transparent",
+                    }}
+                  >
+                    <FormControlLabel
+                      value={address.id}
+                      control={<Radio />}
+                      label={
+                        <Box>
+                          {address.isDefault && (
+                            <Chip
+                              label="Default"
+                              color="success"
+                              size="small"
+                            />
+                          )}
+                          <Stack spacing={0.7}>
+                            {Object.entries(address.details).map(
+                              ([key, value]) => (
+                                <Box key={key} sx={{ display: "flex" }}>
+                                  <Typography
+                                    sx={{ width: 80, fontWeight: "bold" }}
+                                  >
+                                    {key}:
+                                  </Typography>
+                                  <Typography>{value}</Typography>
+                                </Box>
+                              )
+                            )}
+                          </Stack>
                         </Box>
-                      ))}
-                    </Stack>
+                      }
+                    />
                   </Box>
-                }
-              />
-            </Box>
-          ))}
-        </Stack>
-      </RadioGroup>
-    </FormControl>
+                </Grid>
+              ))}
+            </Grid>
+          </RadioGroup>
+        </FormControl>
+      </Box>
     </Container>
   );
 }
