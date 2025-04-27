@@ -47,6 +47,9 @@ public class AppUser implements UserDetails, Serializable {
     @Column(name = "updated")
     private Date updated;
 
+    @Column(name = "date_of_birth")
+    private Date dateOfBirth;
+
     @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
     private List<Address> addresses;
 
