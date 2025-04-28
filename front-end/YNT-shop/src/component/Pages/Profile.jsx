@@ -14,6 +14,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import { SnackbarProvider } from "notistack";
 import { useState } from "react";
 
@@ -202,7 +204,7 @@ function ProfilePage() {
                       borderRadius: 2,
                       padding: 2,
                       maxWidth: 450,
-                      height: 200,
+                      height: 230,
                       justifyContent: "space-evenly",
                       display: "flex",
                       backgroundColor: "transparent",
@@ -220,6 +222,7 @@ function ProfilePage() {
                               size="small"
                             />
                           )}
+                          
                           <Stack spacing={0.7}>
                             {Object.entries(address.details).map(
                               ([key, value]) => (
@@ -233,6 +236,16 @@ function ProfilePage() {
                                 </Box>
                               )
                             )}
+                          </Stack>
+                          <Stack spacing={0.7}
+                            direction={"row"}
+                            alignItems={"center"}
+                            justifyContent={"space-between"}
+                            sx={{ width: "100%" }}
+                            margin={1}
+                            >
+                            <DeleteRoundedIcon/>
+                            <EditRoundedIcon/>
                           </Stack>
                         </Box>
                       }

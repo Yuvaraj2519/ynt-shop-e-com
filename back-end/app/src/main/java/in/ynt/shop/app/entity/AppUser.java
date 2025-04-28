@@ -50,6 +50,9 @@ public class AppUser implements UserDetails, Serializable {
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
     @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
     private List<Address> addresses;
 
