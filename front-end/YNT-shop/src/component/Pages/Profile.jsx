@@ -50,19 +50,14 @@ function ProfilePage() {
         Country: "USA",
       },
     },
-    {
-      id: "addr3",
-      isDefault: false,
-      details: {
-        Name: "Jane Smith",
-        Street: "456 Oak Avenue",
-        City: "Shelbyville",
-        State: "IL",
-        ZIP: "62565",
-        Country: "USA",
-      },
-    },
   ];
+
+  const options = [
+    { id: '1', title: 'Home address', street: '123 Main Street', City: 'Springfield', State: 'IL', ZIP: '62704', Country: 'USA' },
+    { id: '2', title: 'Work address', Street: '456 Oak Avenue', City: 'Shelbyville', State: 'IL', ZIP: '62565', Country: 'USA' },
+    { id: '3', title: 'other', Street: '789 Elm Street', City: 'Capital City', State: 'IL', ZIP: '62701', Country: 'USA' },
+  ];
+  const [selected, setSelected] = useState("1");  
 
   const [selectedId, setSelectedId] = useState(
     addresses.find((a) => a.isDefault)?.id || ""
@@ -172,91 +167,43 @@ function ProfilePage() {
           )}
         </Box>
       </Box>
-      <Box
-        sx={{
-          border: "1px solid",
-          borderColor: "grey.400",
-          borderRadius: 2,
-          padding: 2,
-          maxWidth: 600,
-          overflowY: "auto",
-          height: "65vh",
-        }}
-      >
-        <Typography variant="h6" sx={{ fontWeight: "bold", marginBottom: 2 }}>
-          Your address details
-        </Typography>
-        <FormControl component="fieldset">
-          <RadioGroup
-            name="address-selection"
-            value={selectedId}
-            onChange={(e) => setSelectedId(e.target.value)}
-          >
-            <Grid container spacing={2}>
-              {addresses.map((address) => (
-                <Grid item xs={12} sm={6} key={address.id}>
-                  <Box
-                    key={address.id}
-                    sx={{
-                      border: "1px solid",
-                      borderColor:
-                        selectedId === address.id ? "primary.main" : "grey.400",
-                      borderRadius: 2,
-                      padding: 2,
-                      maxWidth: 450,
-                      height: 230,
-                      justifyContent: "space-evenly",
-                      display: "flex",
-                      backgroundColor: "transparent",
-                    }}
-                  >
-                    <FormControlLabel
-                      value={address.id}
-                      control={<Radio />}
-                      label={
-                        <Box>
-                          {address.isDefault && (
-                            <Chip
-                              label="Default"
-                              color="success"
-                              size="small"
-                            />
-                          )}
-                          
-                          <Stack spacing={0.7}>
-                            {Object.entries(address.details).map(
-                              ([key, value]) => (
-                                <Box key={key} sx={{ display: "flex" }}>
-                                  <Typography
-                                    sx={{ width: 80, fontWeight: "bold" }}
-                                  >
-                                    {key}:
-                                  </Typography>
-                                  <Typography>{value}</Typography>
-                                </Box>
-                              )
-                            )}
-                          </Stack>
-                          <Stack spacing={0.7}
-                            direction={"row"}
-                            alignItems={"center"}
-                            justifyContent={"space-between"}
-                            sx={{ width: "100%" }}
-                            margin={1}
-                            >
-                            <DeleteRoundedIcon/>
-                            <EditRoundedIcon/>
-                          </Stack>
-                        </Box>
-                      }
-                    />
-                  </Box>
-                </Grid>
-              ))}
-            </Grid>
-          </RadioGroup>
-        </FormControl>
-      </Box>
+      <Box display="flex" flexDirection="column" gap={2}>
+      {options.map((option) => (
+        <Box
+          key={option.id}
+          sx={{
+            position: 'relative',
+            border: '1px solid #ccc',
+            borderRadius: 2,
+            padding: 2,
+            paddingLeft: 5,
+            backgroundColor: selected === option.id ? '#e3f2fd' : '#f9f9f9',
+          }}
+        >
+          <FormControlLabel
+            control={
+              <Radio
+                checked={selected === option.id}
+                onChange={() => setSelected(option.id)}
+                value={option.id}
+                sx={{ position: 'absolute', top: 7, left: 2 }}
+              />
+            }
+            label={
+              <>
+              <Typography variant="subtitle1" fontWeight="bold">
+                {option.title}
+              </Typography>
+              <Typography variant="body2">
+                {option.street}
+              </Typography>
+              </>
+            }
+            sx={{ marginLeft: 0 }}
+          />
+        </Box>
+      ))}
+    </Box>
     </Container>
   );
 }
