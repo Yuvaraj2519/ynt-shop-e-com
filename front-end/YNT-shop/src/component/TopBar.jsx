@@ -1,4 +1,5 @@
 import { Avatar, Box, Paper, Typography } from "@mui/material";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
@@ -6,7 +7,12 @@ function TopBar() {
 
   const navigate = useNavigate();
   const profile = useSelector((state) => state.profile.user);
-  console.log("Profile: ", profile);
+
+  useEffect(() => {
+    if (!profile) {
+      navigate("/login");
+    }
+  }, [profile, navigate]);
 
   return (
     <div className="top-bar">
