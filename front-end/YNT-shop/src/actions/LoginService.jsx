@@ -1,4 +1,4 @@
-import AxiosInstance from "../utils/AxiosInstance";
+import AxiosInstance from '../utils/axiosInstance';
 
 async function LoginService(email, password) {
 

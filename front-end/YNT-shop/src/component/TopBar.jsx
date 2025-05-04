@@ -1,18 +1,36 @@
 import { Avatar, Box, Paper, Typography } from "@mui/material";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+
+import ProfileService from "../actions/ProfileService";
+import { setProfile } from "../store/profile/ProfileSlice";
 
 function TopBar() {
 
   const navigate = useNavigate();
-  const profile = useSelector((state) => state.profile.user);
+  const dispatch = useDispatch();
+
+  const profileData = useSelector((state) => state.profile.user);
+  const [profile, setProfileData] = useState(profileData);
 
   useEffect(() => {
-    if (!profile) {
-      navigate("/login");
-    }
-  }, [profile, navigate]);
+    const fetchProfile = async () => {
+      try {
+        const response = await ProfileService();
+        if (response.status === 200) {
+          dispatch(setProfile(response));
+          setProfileData(response);
+        } else {
+          console.error("Failed to fetch profile:", response);
+        }
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
+    };
+
+    fetchProfile();
+  }, [profile, dispatch]);
 
   return (
     <div className="top-bar">

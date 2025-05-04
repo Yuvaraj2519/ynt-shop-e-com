@@ -38,4 +38,20 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest()
                 .body(responseDTO);
     }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<?> handleUserNotFoundException(UserNotFoundException ex) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setErrorCode(400);
+        errorResponse.setErrorMessage(ex.getMessage());
+        errorResponse.setErrorCategory("Invalid data");
+        errorResponse.setErrorPath(ex.getCause().getClass().getSimpleName());
+
+        ResponseDTO<ErrorResponse> responseDTO = new ResponseDTO<>();
+        responseDTO.setStatus(Status.FAILURE);
+        responseDTO.setErrors(errorResponse);
+        responseDTO.setSource("front end");
+        return ResponseEntity.badRequest()
+                .body(responseDTO);
+    }
 }

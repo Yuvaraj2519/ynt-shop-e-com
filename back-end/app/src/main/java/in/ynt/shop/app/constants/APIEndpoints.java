@@ -9,4 +9,5 @@ public class APIEndpoints {
     public static final String REGISTER = "/register";
     public static final String LOGIN = "/login";
     public static final String PROFILE = "/profile";
+    public static final String VIEW_PROFILE = "/view-profile";
 }
