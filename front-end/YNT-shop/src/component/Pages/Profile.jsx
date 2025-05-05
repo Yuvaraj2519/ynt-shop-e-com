@@ -18,12 +18,14 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import { SnackbarProvider } from "notistack";
 import { useState } from "react";
+import AddressPopUp from "./AddressPopUp";
 
 function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const addresses = [
     {
@@ -201,6 +203,43 @@ function ProfilePage() {
             }
             sx={{ marginLeft: 0 }}
           />
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginTop: 1,
+            }}
+          >
+            <ButtonGroup variant="text" aria-label="text button group" sx={{ gap: 2 }}>
+              <Button
+                variant="outlined"
+                color="primary"
+                startIcon={<EditRoundedIcon />}
+                onClick={() => setOpen(true)}
+              >
+                Edit
+              </Button>
+              <Button
+                variant="outlined"
+                color="error"
+                startIcon={<DeleteRoundedIcon />}
+                onClick={() => console.log('Delete clicked')}
+              >
+                Delete
+              </Button>
+            </ButtonGroup>
+            {option.isDefault && (
+              <Chip label="Default" color="primary" size="small" />
+            )}
+            </Box>
+            { open && (
+              <AddressPopUp
+                address={option}
+                setAddress={setSelectedId}
+                open={open}
+                setOpen={setOpen}/>
+              )}
         </Box>
       ))}
     </Box>
