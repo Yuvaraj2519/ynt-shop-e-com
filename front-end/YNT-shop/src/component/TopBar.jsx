@@ -15,23 +15,23 @@ function TopBar() {
   const [profile, setProfileData] = useState(profileData);
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await ProfileService();
-        if (response.status === 200) {
-          dispatch(setProfile(response));
-          setProfileData(response);
-        } else {
-          console.error("Failed to fetch profile:", response);
-        }
-      } catch (error) {
-        console.error("Error fetching profile:", error);
+      fetchProfile();
+  }, [dispatch]);
+
+  const fetchProfile = async () => {
+    try {
+      const response = await ProfileService();
+      if (response !== null) {
+        dispatch(setProfile(response));
+        setProfileData(response);
+      } else {
+        console.error("Failed to fetch profile:", response);
       }
-    };
-
-    fetchProfile();
-  }, [profile, dispatch]);
-
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+    }
+  };
+  
   return (
     <div className="top-bar">
       <Box
