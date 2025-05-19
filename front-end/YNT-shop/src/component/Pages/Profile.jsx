@@ -143,6 +143,7 @@ function ProfilePage() {
         />
         <TextField
           label="Date of Birth"
+          type="date"
           variant="outlined"
           margin="normal"
           fullWidth
