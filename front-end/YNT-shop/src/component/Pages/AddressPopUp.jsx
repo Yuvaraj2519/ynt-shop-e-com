@@ -43,13 +43,7 @@ function AddressPopUp({ address, setAddress, open, setOpen }) {
             fullWidth
           />
           <TextField
-            label="Zip Code"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-          />
-          <TextField
-            label="Country"
+            label="Pin Code"
             variant="outlined"
             margin="normal"
             fullWidth
