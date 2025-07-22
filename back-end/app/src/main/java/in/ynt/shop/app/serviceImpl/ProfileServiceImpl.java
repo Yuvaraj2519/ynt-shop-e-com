@@ -27,7 +27,7 @@ public class ProfileServiceImpl implements ProfileService {
         try {
             String email = jwtUtil.getUsername(token);
             if (email == null || email.isEmpty()) {
-                log.error("No username found for token {}", token);
+                log.error("No email or username found for token {}", token);
             }
             AppUser appUser = appUserRepository.findByEmail(email).orElse(null);
             if (appUser == null) {
