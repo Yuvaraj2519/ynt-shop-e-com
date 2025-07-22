@@ -1,4 +1,5 @@
 import { Backdrop, Box, Paper, TextField, Typography } from "@mui/material";
+import { useState } from "react";
 
 function AddressPopUp({ address, setAddress, open, setOpen }) {
 
@@ -21,31 +22,43 @@ function AddressPopUp({ address, setAddress, open, setOpen }) {
           gutterBottom
           style={{ alignItems: "right" }}
         >
-          Address
+          Edit Address
         </Typography>
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
           <TextField
             label="Street Address"
             variant="outlined"
             margin="normal"
+            value={address.street}
+            onChange={(e) => handleChange(e)}
+            name="street"
             fullWidth
           />
           <TextField
             label="City"
             variant="outlined"
             margin="normal"
+            value={address.city}
+            onChange={(e) => handleChange(e)}
+            name="city"
             fullWidth
           />
           <TextField
             label="State"
             variant="outlined"
             margin="normal"
+            value={address.state}
+            onChange={(e) => handleChange(e)}
+            name="state"
             fullWidth
           />
           <TextField
             label="Pin Code"
             variant="outlined"
             margin="normal"
+            value={address.pincode}
+            onChange={(e) => handleChange(e)}
+            name="pincode"
             fullWidth
           />
         </Box>

@@ -4,18 +4,13 @@ import {
   ButtonGroup,
   Chip,
   Container,
-  FormControl,
   FormControlLabel,
-  Grid,
-  Paper,
   Radio,
-  RadioGroup,
-  Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import { SnackbarProvider } from "notistack";
 import { useState } from "react";
 import AddressPopUp from "./AddressPopUp";
@@ -55,11 +50,35 @@ function ProfilePage() {
   ];
 
   const options = [
-    { id: '1', title: 'Home address', street: '123 Main Street', City: 'Springfield', State: 'IL', ZIP: '62704', Country: 'USA' },
-    { id: '2', title: 'Work address', Street: '456 Oak Avenue', City: 'Shelbyville', State: 'IL', ZIP: '62565', Country: 'USA' },
-    { id: '3', title: 'other', Street: '789 Elm Street', City: 'Capital City', State: 'IL', ZIP: '62701', Country: 'USA' },
+    {
+      id: "1",
+      title: "Home address",
+      street: "123 Main Street",
+      City: "Springfield",
+      State: "IL",
+      ZIP: "62704",
+      Country: "USA",
+    },
+    {
+      id: "2",
+      title: "Work address",
+      Street: "456 Oak Avenue",
+      City: "Shelbyville",
+      State: "IL",
+      ZIP: "62565",
+      Country: "USA",
+    },
+    {
+      id: "3",
+      title: "other",
+      Street: "789 Elm Street",
+      City: "Capital City",
+      State: "IL",
+      ZIP: "62701",
+      Country: "USA",
+    },
   ];
-  const [selected, setSelected] = useState("1");  
+  const [selected, setSelected] = useState("1");
 
   const [selectedId, setSelectedId] = useState(
     addresses.find((a) => a.isDefault)?.id || ""
@@ -171,79 +190,82 @@ function ProfilePage() {
         </Box>
       </Box>
       <Box display="flex" flexDirection="column" gap={2}>
-      {options.map((option) => (
-        <Box
-          key={option.id}
-          sx={{
-            position: 'relative',
-            border: '1px solid #ccc',
-            borderRadius: 2,
-            padding: 2,
-            paddingLeft: 5,
-            backgroundColor: selected === option.id ? '#e3f2fd' : '#f9f9f9',
-          }}
-        >
-          <FormControlLabel
-            control={
-              <Radio
-                checked={selected === option.id}
-                onChange={() => setSelected(option.id)}
-                value={option.id}
-                sx={{ position: 'absolute', top: 7, left: 2 }}
-              />
-            }
-            label={
-              <>
-              <Typography variant="subtitle1" fontWeight="bold">
-                {option.title}
-              </Typography>
-              <Typography variant="body2">
-                {option.street}
-              </Typography>
-              </>
-            }
-            sx={{ marginLeft: 0 }}
-          />
+        {options.map((option) => (
           <Box
+            key={option.id}
             sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginTop: 1,
+              position: "relative",
+              border: "1px solid #ccc",
+              borderRadius: 2,
+              padding: 2,
+              paddingLeft: 5,
+              backgroundColor: selected === option.id ? "#e3f2fd" : "#f9f9f9",
             }}
           >
-            <ButtonGroup variant="text" aria-label="text button group" sx={{ gap: 2 }}>
-              <Button
-                variant="outlined"
-                color="primary"
-                startIcon={<EditRoundedIcon />}
-                onClick={() => setOpen(true)}
+            <FormControlLabel
+              control={
+                <Radio
+                  checked={selected === option.id}
+                  onChange={() => setSelected(option.id)}
+                  value={option.id}
+                  sx={{ position: "absolute", top: 7, left: 2 }}
+                />
+              }
+              label={
+                <>
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    {option.title}
+                  </Typography>
+                  <Typography variant="body2">{option.street}</Typography>
+                </>
+              }
+              sx={{ marginLeft: 0 }}
+            />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginTop: 1,
+              }}
+            >
+              <ButtonGroup
+                variant="text"
+                aria-label="text button group"
+                sx={{ gap: 2 }}
               >
-                Edit
-              </Button>
-              <Button
-                variant="outlined"
-                color="error"
-                startIcon={<DeleteRoundedIcon />}
-                onClick={() => console.log('Delete clicked')}
-              >
-                Delete
-              </Button>
-            </ButtonGroup>
-            {option.isDefault && (
-              <Chip label="Default" color="primary" size="small" />
-            )}
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  startIcon={<EditRoundedIcon />}
+                  onClick={() => setOpen(true)}
+                >
+                  Edit
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  startIcon={<DeleteRoundedIcon />}
+                  onClick={() => console.log("Delete clicked")}
+                >
+                  Delete
+                </Button>
+              </ButtonGroup>
+              {option.isDefault && (
+                <Chip label="Default" color="primary" size="small" />
+              )}
             </Box>
-            { open && (
+            {open && (
               <AddressPopUp
                 address={option}
                 setAddress={setSelectedId}
                 open={open}
-                setOpen={setOpen}/>
-              )}
-        </Box>
-      ))}
-    </Box>
+                setOpen={setOpen}
+              />
+            )}
+          </Box>
+        ))}
+      </Box>
     </Container>
   );
 }
