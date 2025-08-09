@@ -17,24 +17,24 @@ public class LoggingAspect {
     @Before("execution(* in.ynt.shop.app.serviceImpl.*.*(..))")
     public void logBeforeMethod(JoinPoint joinPoint) {
         logger.info("Entering into method :: {} from service class - {}", joinPoint.getSignature().getName(),
-                joinPoint.getTarget().getClass().getName());
+                joinPoint.getTarget().getClass().getSimpleName());
     }
 
     @After("execution(* in.ynt.shop.app.serviceImpl.*.*(..))")
     public void logAfterMethod(JoinPoint joinPoint) {
         logger.info("Exiting from method :: {} from service class - {}", joinPoint.getSignature().getName(),
-                joinPoint.getTarget().getClass().getName());
+                joinPoint.getTarget().getClass().getSimpleName());
     }
 
     @Before("execution(* in.ynt.shop.app.controller.*.*(..))")
     public void logBeforeControllerMethod(JoinPoint joinPoint) {
         logger.info("Entering into method :: {} from controller class - {}", joinPoint.getSignature().getName(),
-                joinPoint.getTarget().getClass().getName());
+                joinPoint.getTarget().getClass().getSimpleName());
     }
 
     @After("execution(* in.ynt.shop.app.serviceImpl.*.*(..))")
     public void logAfterControllerMethod(JoinPoint joinPoint) {
         logger.info("Exiting from method :: {} from controller class - {}", joinPoint.getSignature().getName(),
-                joinPoint.getTarget().getClass().getName());
+                joinPoint.getTarget().getClass().getSimpleName());
     }
 }
